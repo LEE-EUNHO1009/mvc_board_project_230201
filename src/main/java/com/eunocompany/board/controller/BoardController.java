@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eunocompany.board.command.BCommand;
+import com.eunocompany.board.command.BContentViewCommand;
 import com.eunocompany.board.command.BListCommand;
 import com.eunocompany.board.command.BWriteCommand;
 
@@ -74,6 +75,9 @@ public class BoardController extends HttpServlet {
 			
 			viewPage = "/board_list.jsp";
 		}else if(command.equals("/contentView.do")) {
+			
+			bCommand=new BContentViewCommand();
+			bCommand.execute(request, response);
 			
 			viewPage = "/content_view.jsp";
 		}
