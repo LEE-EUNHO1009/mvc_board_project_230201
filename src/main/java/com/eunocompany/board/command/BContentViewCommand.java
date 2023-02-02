@@ -11,8 +11,11 @@ public class BContentViewCommand implements BCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		
+		String bid = request.getParameter("bid");
+		
 		BoardDao dao = new BoardDao();
-		BoardDto dto = dao.contentView("10");
+		BoardDto dto = dao.contentView(bid);
 		
 		request.setAttribute("dto", dto);
 	}
