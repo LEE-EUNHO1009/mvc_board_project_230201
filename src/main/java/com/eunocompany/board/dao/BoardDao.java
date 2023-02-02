@@ -110,7 +110,8 @@ public class BoardDao {
 	}
 	
 	public BoardDto contentView(String boardNum) {//목록에서 유저가 클릭한 글 1개만 가져오기
-		hit(boardNum);
+		upHit(boardNum); //조회수 늘려주는 메서드(boardNum);
+		//bhit=bhit+1; =>이렇게는 할 필요없음
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -211,7 +212,7 @@ public class BoardDao {
 			Class.forName(driverName);//jdbc 드라이버 불러오기
 			conn = DriverManager.getConnection(url, user, pass);//DB 커넥션 생성
 			pstmt = conn.prepareStatement(sql);//sql 객체 생성			
-			pstmt.setString(1, bid);//아이디
+			pstmt.setString(1, bid);//글번호
 			
 			pstmt.executeUpdate();//sql 실행
 		} catch(Exception e) {
@@ -231,7 +232,7 @@ public class BoardDao {
 		}
 		
 	}
-	public void hit(String bid) {//글 조회수
+	public void upHit(String bid) {//글 조회수 +1씩 증가
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
