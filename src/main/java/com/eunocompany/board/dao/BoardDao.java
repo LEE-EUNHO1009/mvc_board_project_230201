@@ -110,7 +110,7 @@ public class BoardDao {
 	}
 	
 	public BoardDto contentView(String boardNum) {//목록에서 유저가 클릭한 글 1개만 가져오기
-		
+		hit(boardNum);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -206,6 +206,37 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		
 		String sql="DELETE FROM mvc_board WHERE bid=?";
+		
+		try {
+			Class.forName(driverName);//jdbc 드라이버 불러오기
+			conn = DriverManager.getConnection(url, user, pass);//DB 커넥션 생성
+			pstmt = conn.prepareStatement(sql);//sql 객체 생성			
+			pstmt.setString(1, bid);//아이디
+			
+			pstmt.executeUpdate();//sql 실행
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	public void hit(String bid) {//글 조회수
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="UPDATE mvc_board SET bhit=bhit+1 WHERE bid=?";
 		
 		try {
 			Class.forName(driverName);//jdbc 드라이버 불러오기
