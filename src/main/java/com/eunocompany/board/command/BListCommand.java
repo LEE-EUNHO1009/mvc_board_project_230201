@@ -15,9 +15,9 @@ public class BListCommand implements BCommand {
 		// TODO Auto-generated method stub
 		BoardDao dao = new BoardDao();
 		
-		ArrayList<BoardDto> dtoList = dao.list(); //DB의 모든 글을 ArrayList 형태로 반환하는 메서드 호출
+		ArrayList<BoardDto> dtoList = dao.list();//DB의 모든 글을 ArrayList 형태로 반환하는 메서드 호출
 		
-		request.setAttribute("dtoList", dtoList); //request 객체에 모든 글이 저장된 리스트를 싣기
+		request.setAttribute("dtoList", dtoList);//request 객체에 모든 글이 저장된 리스트를 싣기
 	}
 
 }

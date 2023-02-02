@@ -22,12 +22,18 @@
 		<c:forEach items="${dtoList }" var="dto">
 		<tr>
 			<td>${dto.bid }</td>
-			<td>${dto.btitle }</td>
+			<td><a href="contentView.do">${dto.btitle }</a></td>
 			<td>${dto.bname }</td>
 			<td>${dto.bdate }</td>
 			<td>${dto.bhit }</td>
 		</tr>
 		</c:forEach>
+		
+		<tr>
+			<td colspan="5" align="right">
+				<input type="button" value="글쓰기" onclick="javascript:window.location='writeForm.do'"> 
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

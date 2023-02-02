@@ -10,7 +10,7 @@
 	<h2>게시판 글쓰기</h2>
 	<hr>
 	<table border="1" cellpadding="0" cellspacing="0" width="500">
-		<form action="write.do">
+		<form action="write.do" method="post">
 			<tr>
 				<td>제 목</td>
 				<td><input type="text" name="btitle" size="50"></td>
@@ -26,7 +26,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="등록">
-					<input type="button" value="취소" onclick="javascript:window.location=''">
+					<input type="button" value="취소" onclick="javascript:window.location='list.do'">
 				</td>
 			</tr>
 		</form>
