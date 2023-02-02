@@ -164,7 +164,71 @@ public class BoardDao {
 			}
 		}
 		
-		return dto;
+		return dto;		
+	}
+	
+	public void modify(String bid, String btitle, String bcontent) {//글수정
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="UPDATE mvc_board SET btitle=?, bcontent=? WHERE bid=?";
+		
+		try {
+			Class.forName(driverName);//jdbc 드라이버 불러오기
+			conn = DriverManager.getConnection(url, user, pass);//DB 커넥션 생성
+			pstmt = conn.prepareStatement(sql);//sql 객체 생성			
+			pstmt.setString(1, btitle);//글제목
+			pstmt.setString(2, bcontent);//글내용
+			pstmt.setString(3, bid);//글쓴이
+			
+			pstmt.executeUpdate();//sql 실행
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	public void delete(String bid) {//글삭제
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="DELETE FROM mvc_board WHERE bid=?";
+		
+		try {
+			Class.forName(driverName);//jdbc 드라이버 불러오기
+			conn = DriverManager.getConnection(url, user, pass);//DB 커넥션 생성
+			pstmt = conn.prepareStatement(sql);//sql 객체 생성			
+			pstmt.setString(1, bid);//아이디
+			
+			pstmt.executeUpdate();//sql 실행
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	

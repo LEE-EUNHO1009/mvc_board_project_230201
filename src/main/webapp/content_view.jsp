@@ -7,7 +7,7 @@
 <title>게시판 글 내용 보기</title>
 </head>
 <body>
-	<h2>게시판 글 내용 보기</h2>
+	<h2>게시판 글 내용</h2>
 	<hr>
 	<table border="1" cellspacing="0" cellpadding="0" width="600">
 		<tr>
@@ -24,9 +24,9 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="right">
-				<input type="button" value="수정" onclick="javascript:window.location=''"> 
-				<input type="button" value="삭제" onclick="javascript:window.location=''"> 
-				<input type="button" value="목록" onclick="javascript:window.location='list.do'"> 
+				<input type="button" value="수정" onclick="javascript:window.location='contentModify.do?bid=${dto.bid}'">
+				<input type="button" value="삭제" onclick="javascript:window.location='delete.do?bid=${dto.bid}'">
+				<input type="button" value="목록" onclick="javascript:window.location='list.do'">
 			</td>
 		</tr>
 	</table>

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.eunocompany.board.command.BCommand;
 import com.eunocompany.board.command.BContentViewCommand;
+import com.eunocompany.board.command.BDeleteCommand;
 import com.eunocompany.board.command.BListCommand;
+import com.eunocompany.board.command.BModifyCommand;
 import com.eunocompany.board.command.BWriteCommand;
 
 /**
@@ -53,38 +55,55 @@ public class BoardController extends HttpServlet {
 		String conPath = request.getContextPath();//컨택스트 패스만 분리하여 저장
 		String command = uri.substring(conPath.length());
 		
-		BCommand bCommand= null;
+		BCommand bCommand = null;
 		
 		System.out.println("command : "+command);
 		
-		String viewPage = null;//view의 이름
+		String viewPage = "/error.jsp";//view의 이름
 		
 		if(command.equals("/writeForm.do")) {
-			viewPage ="/write_form.jsp";
-		}else if(command.equals("/write.do")){
+			viewPage = "/write_form.jsp";
+		} else if(command.equals("/write.do")) {
 			
-			//BWriteCommand bCommand=new BWriteCommand(); 와 같은 거임(아래거)
-			bCommand=new BWriteCommand();
+			//BWriteCommand bWriteCommand = new BWriteCommand();
+			bCommand = new BWriteCommand();
 			bCommand.execute(request, response);
 			
 			viewPage = "/list.do";
-		}else if(command.equals("/list.do")) {
+		} else if(command.equals("/list.do" )) {
 			
-			bCommand=new BListCommand();
+			bCommand = new BListCommand();
 			bCommand.execute(request, response);
 			
 			viewPage = "/board_list.jsp";
-		}else if(command.equals("/contentView.do")) {
+		} else if(command.equals("/contentView.do" )) {
 			
-			bCommand=new BContentViewCommand();
+			bCommand = new BContentViewCommand();
 			bCommand.execute(request, response);
 			
 			viewPage = "/content_view.jsp";
+		} else if(command.equals("/contentModify.do" )) {
+			
+			bCommand = new BContentViewCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/content_modify.jsp";
+		} else if(command.equals("/modify.do" )) {
+			
+			bCommand = new BModifyCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/list.do";
+		}else if(command.equals("/delete.do" )) {
+			
+			bCommand = new BDeleteCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/list.do";
 		}
 		
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-	      dispatcher.forward(request, response);
+		dispatcher.forward(request, response);
 	}
 
 }
