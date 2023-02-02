@@ -82,7 +82,7 @@ public class BoardDao {
 //				dto.setBdate(bdate);
 //				dto.setBhit(bhit);
 				
-				dtoList.add(dto);
+				dtoList.add(dto); //dto가 4개 완성되어있는 게 만들어짐, 맵핑
 			}
 			
 		} catch (Exception e) {

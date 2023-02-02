@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eunocompany.board.command.BCommand;
+import com.eunocompany.board.command.BListCommand;
 import com.eunocompany.board.command.BWriteCommand;
 
 /**
@@ -68,7 +69,8 @@ public class BoardController extends HttpServlet {
 			viewPage = "/list.do";
 		}else if(command.equals("/list.do")) {
 			
-			
+			bCommand=new BListCommand();
+			bCommand.execute(request, response);
 			
 			viewPage = "/board_list.jsp";
 		}
