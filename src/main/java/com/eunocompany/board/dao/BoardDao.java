@@ -110,8 +110,10 @@ public class BoardDao {
 	}
 	
 	public BoardDto contentView(String boardNum) {//목록에서 유저가 클릭한 글 1개만 가져오기
-		upHit(boardNum); //조회수 늘려주는 메서드(boardNum);
-		//bhit=bhit+1; =>이렇게는 할 필요없음
+		
+		//조회수 늘려주는 메서드(boardNum);
+		upHit(boardNum); //해당 글의 번호로 조회하여 조회수1씩 증가
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
